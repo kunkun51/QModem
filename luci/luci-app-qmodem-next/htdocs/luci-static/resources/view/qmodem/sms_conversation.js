@@ -157,7 +157,7 @@ return view.extend({
 				}
 			}, '← ' + _('Back')),
 			E('h2', { 'style': 'display: inline-block; margin: 0;' }, 
-				_('Conversation with ') + smsService.formatPhoneNumber(contact))
+				_('会话来自 ') + smsService.formatPhoneNumber(contact))
 		]);
 		container.appendChild(headerDiv);
 
