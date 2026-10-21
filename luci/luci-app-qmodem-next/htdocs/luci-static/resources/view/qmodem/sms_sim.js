@@ -155,9 +155,9 @@ return view.extend({
 			var thead = E('thead', {}, [
 				E('tr', { 'class': 'tr cbi-section-table-titles' }, [
 					E('th', { 'class': 'th', 'style': 'width: 5%' }, _('Index')),
-					E('th', { 'class': 'th', 'style': 'width: 15%' }, _('Sender')),
+					E('th', { 'class': 'th', 'style': 'width: 15%' }, _('发信人')),
 					E('th', { 'class': 'th', 'style': 'width: 15%' }, _('Time')),
-					E('th', { 'class': 'th', 'style': 'width: 50%' }, _('Content')),
+					E('th', { 'class': 'th', 'style': 'width: 50%' }, _('短信内容')),
 					E('th', { 'class': 'th', 'style': 'width: 10%' }, _('Type')),
 					E('th', { 'class': 'th', 'style': 'width: 5%' }, _('Actions'))
 				])
