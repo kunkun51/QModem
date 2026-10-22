@@ -438,7 +438,7 @@ return view.extend({
 			
 			var contact = smsService.formatPhoneNumber(conv.contact);
 			var preview = lastMsg ? smsService.truncateMessage(lastMsg.content, 40) : '';
-			var time = lastMsg ? smsService.formatTimestamp(lastMsg.timestamp) : '';
+			var time = lastMsg ? smsService.formatFullTimestampUtc8(lastMsg.timestamp) : '';
 			var count = conv.messages ? conv.messages.length : 0;
 			
 			// Use unread_count from backend
