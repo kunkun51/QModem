@@ -170,7 +170,7 @@ return view.extend({
 			for (var i = 0; i < messages.length; i++) {
 				var msg = messages[i];
 				
-				var index = msg.index != null ? String(msg.index) : '-';
+				var index = msg.id != null ? String(msg.id) : '-';
 				var sender = smsService.formatPhoneNumber(msg.sender || '-');
 				var time = msg.timestamp ? smsService.formatTimestamp(msg.timestamp) : '-';
 				var content = smsService.truncateMessage(msg.content || msg.sms_text || '', 80);

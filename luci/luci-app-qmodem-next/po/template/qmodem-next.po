@@ -1642,7 +1642,7 @@ msgstr "LTE上行"
 
 #: view/qmodem/sms.js:424
 msgid "Last Message"
-msgstr "最后一条消息"
+msgstr "最新的消息"
 
 #: view/qmodem/overview.js:461
 #: view/qmodem/overview.js:519

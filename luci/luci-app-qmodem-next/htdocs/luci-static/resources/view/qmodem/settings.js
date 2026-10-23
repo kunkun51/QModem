@@ -118,7 +118,7 @@ return view.extend({
 		o.description = _('Once enabled, the USB ports will be scanned on every boot.');
 		o.default = '1';
 
-		o = s.option(form.ListValue, 'scan_log_level', _('Scan Log Level'));
+		o = s.option(form.ListValue, 'scan_log_level', _('扫描日志级别'));
 		o.value('debug', _('Debug'));
 		o.value('info', _('Info'));
 		o.value('notice', _('Notice'));
@@ -126,35 +126,35 @@ return view.extend({
 		o.value('err', _('Error'));
 		o.default = 'info';
 
-		o = s.option(form.Value, 'scan_workers', _('Scan Workers'));
+		o = s.option(form.Value, 'scan_workers', _('扫描工作线程数'));
 		o.datatype = 'and(uinteger,min(1),max(16))';
 		o.default = '4';
 
-		o = s.option(form.Value, 'at_probe_workers', _('AT Probe Workers'));
+		o = s.option(form.Value, 'at_probe_workers', _('AT探测工作线程数'));
 		o.datatype = 'and(uinteger,min(1),max(16))';
 		o.default = '4';
 
-		o = s.option(form.Value, 'at_timeout_fast', _('Fast AT Timeout'));
+		o = s.option(form.Value, 'at_timeout_fast', _('快速AT超时'));
 		o.description = _('Units: seconds');
 		o.datatype = 'and(uinteger,min(1),max(30))';
 		o.default = '2';
 
-		o = s.option(form.Value, 'at_timeout_model', _('Model AT Timeout'));
+		o = s.option(form.Value, 'at_timeout_model', _('模组AT超时'));
 		o.description = _('Units: seconds');
 		o.datatype = 'and(uinteger,min(1),max(60))';
 		o.default = '8';
 
-		o = s.option(form.Value, 'hotplug_add_delay', _('Hotplug Add Delay'));
+		o = s.option(form.Value, 'hotplug_add_delay', _('热插拔添加延迟'));
 		o.description = _('Units: seconds');
 		o.datatype = 'and(uinteger,min(0),max(60))';
 		o.default = '8';
 
-		o = s.option(form.Value, 'add_retry_delay', _('Add Retry Delay'));
+		o = s.option(form.Value, 'add_retry_delay', _('添加重试延迟'));
 		o.description = _('Units: seconds');
 		o.datatype = 'and(uinteger,min(0),max(60))';
 		o.default = '8';
 
-		o = s.option(form.Value, 'add_retry_max', _('Add Retry Max'));
+		o = s.option(form.Value, 'add_retry_max', _('添加重试最大次数'));
 		o.datatype = 'and(uinteger,min(0),max(20))';
 		o.default = '5';
 

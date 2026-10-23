@@ -126,73 +126,18 @@ return L.Class.extend({
 	},
     formatTimestamp: function(timestamp) {
         if (!timestamp) return '-';
-
-        var date = new Date(timestamp * 1000);
-        // 获取 UTC+8 的各时间分量（不依赖系统时区）
-        var parts = new Intl.DateTimeFormat('en-US', {
-            timeZone: 'Asia/Shanghai',
-            year: 'numeric', month: '2-digit', day: '2-digit',
-            hour: '2-digit', minute: '2-digit',
-            hour12: false, weekday: 'short'
-        }).formatToParts(date);
-
-        var get = function(type) {
-            var p = parts.find(function(x) { return x.type === type; });
-            return p ? p.value : '';
-        };
-
-        var y = parseInt(get('year'), 10);
-        var m = parseInt(get('month'), 10);
-        var d = parseInt(get('day'), 10);
-        var hh = get('hour').padStart(2, '0');
-        var mm = get('minute').padStart(2, '0');
-        var weekdayStr = get('weekday'); // Sun/Mon/Tue/Wed/Thu/Fri/Sat
-
-        // 用 UTC+8 的日期计算天数差（避免跨时区导致 days 偏差）
-        var todayParts = new Intl.DateTimeFormat('en-US', {
-            timeZone: 'Asia/Shanghai',
-            year: 'numeric', month: '2-digit', day: '2-digit'
-        }).formatToParts(new Date());
-        var todayY = parseInt(todayParts.find(function(x){return x.type==='year'}).value, 10);
-        var todayM = parseInt(todayParts.find(function(x){return x.type==='month'}).value, 10);
-        var todayD = parseInt(todayParts.find(function(x){return x.type==='day'}).value, 10);
-
-        var msgDate = new Date(y, m - 1, d);
-        var nowDate = new Date(todayY, todayM - 1, todayD);
-        var days = Math.floor((nowDate - msgDate) / 86400000);
-
-        if (days === 0) return hh + ':' + mm;
-        if (days === 1) return _('Yesterday');
-        if (days < 7) {
-            var map = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
-            return [_('Sunday'), _('Monday'), _('Tuesday'), _('Wednesday'),
-                _('Thursday'), _('Friday'), _('Saturday')][map[weekdayStr]];
-        }
-        return y + '-' + String(m).padStart(2, '0') + '-' + String(d).padStart(2, '0');
-    },
-    formatFullTimestampUtc8: function(timestamp) {
-        if (!timestamp) return '-';
-
-        var date = new Date(timestamp * 1000);
-        var parts = new Intl.DateTimeFormat('zh-CN', {
-            timeZone: 'Asia/Shanghai',
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit',
-            hour: '2-digit',
-            minute: '2-digit',
-            second: '2-digit',
-            hour12: false
-        }).formatToParts(date);
-
-        var get = function(type) {
-            var p = parts.find(function(x) { return x.type === type; });
-            return p ? p.value : '';
-        };
-
-        return get('year') + '-' + get('month') + '-' + get('day') + ' ' +
-            get('hour') + ':' + get('minute') + ':' + get('second');
-    },
+        // 统一转为毫秒级
+        var ms = timestamp > 9999999999 ? timestamp : timestamp * 1000;
+        var correctedDate = new Date(ms);
+        // 使用 getUTC* 方法读取，避免本地时区再次干扰
+        var Y = correctedDate.getUTCFullYear();
+        var M = String(correctedDate.getUTCMonth() + 1).padStart(2, '0');
+        var D = String(correctedDate.getUTCDate()).padStart(2, '0');
+        var h = String(correctedDate.getUTCHours()).padStart(2, '0');
+        var m = String(correctedDate.getUTCMinutes()).padStart(2, '0');
+        var s = String(correctedDate.getUTCSeconds()).padStart(2, '0');
+        return Y + '-' + M + '-' + D + ' ' + h + ':' + m + ':' + s;
+    }
 	formatPhoneNumber: function(number) {
 		if (!number) return '';
 		var digits = number.replace(/\D/g, '');

@@ -587,14 +587,18 @@ return view.extend({
 	},
 
 	formatFullTimestamp: function(timestamp) {
-		var date = new Date(timestamp * 1000);
-		
-		return String(date.getFullYear()) + '-' + 
-		       String(date.getMonth() + 1).padStart(2, '0') + '-' + 
-		       String(date.getDate()).padStart(2, '0') + ' ' +
-		       String(date.getHours()).padStart(2, '0') + ':' + 
-		       String(date.getMinutes()).padStart(2, '0') + ':' + 
-		       String(date.getSeconds()).padStart(2, '0');
+        if (!timestamp) return '-';
+        // 统一转为毫秒级
+        var ms = timestamp > 9999999999 ? timestamp : timestamp * 1000;
+        var correctedDate = new Date(ms);
+        // 使用 getUTC* 方法读取，避免本地时区再次干扰
+        var Y = correctedDate.getUTCFullYear();
+        var M = String(correctedDate.getUTCMonth() + 1).padStart(2, '0');
+        var D = String(correctedDate.getUTCDate()).padStart(2, '0');
+        var h = String(correctedDate.getUTCHours()).padStart(2, '0');
+        var m = String(correctedDate.getUTCMinutes()).padStart(2, '0');
+        var s = String(correctedDate.getUTCSeconds()).padStart(2, '0');
+        return Y + '-' + M + '-' + D + ' ' + h + ':' + m + ':' + s;
 	},
 
 	handleSaveApply: null,

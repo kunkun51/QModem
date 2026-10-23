@@ -125,12 +125,12 @@ return view.extend({
 	selectorBody.appendChild(timezoneSentRow);
 
 	var smsModeRow = E('tr', { 'class': 'tr' });
-	var smsModeLabel = E('td', { 'class': 'td', 'width': '33%' }, _('SMS Mode'));
+	var smsModeLabel = E('td', { 'class': 'td', 'width': '33%' }, _('短信模式'));
 	var smsModeCell = E('td', { 'class': 'td' });
 	var smsModeSelect = E('select', { 'class': 'cbi-input-select', 'id': 'sms_mode_select' }, [
-		E('option', { 'value': 'direct' }, _('Direct modem access')),
-		E('option', { 'value': 'database_poll' }, _('Database with polling')),
-		E('option', { 'value': 'database_urc' }, _('Database with URC'))
+		E('option', { 'value': 'direct' }, _('直接访问调制解调器')),
+		E('option', { 'value': 'database_poll' }, _('轮询数据库')),
+		E('option', { 'value': 'database_urc' }, _('带URC的数据库'))
 	]);
 	smsModeCell.appendChild(smsModeSelect);
 	smsModeRow.appendChild(smsModeLabel);
@@ -438,7 +438,7 @@ return view.extend({
 			
 			var contact = smsService.formatPhoneNumber(conv.contact);
 			var preview = lastMsg ? smsService.truncateMessage(lastMsg.content, 40) : '';
-			var time = lastMsg ? smsService.formatFullTimestampUtc8(lastMsg.timestamp) : '';
+			var time = lastMsg ? smsService.formatTimestamp(lastMsg.timestamp) : '';
 			var count = conv.messages ? conv.messages.length : 0;
 			
 			// Use unread_count from backend

@@ -813,7 +813,7 @@ msgstr "LTE上行"
 
 # Source: view/qmodem/sms.js:333
 msgid "Last Message"
-msgstr "最后一条消息"
+msgstr "最新的消息"
 
 # Source: view/qmodem/overview.js:309, view/qmodem/overview.js:360
 msgid "Last update"
