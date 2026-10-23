@@ -137,7 +137,7 @@ return L.Class.extend({
         var m = String(correctedDate.getUTCMinutes()).padStart(2, '0');
         var s = String(correctedDate.getUTCSeconds()).padStart(2, '0');
         return Y + '-' + M + '-' + D + ' ' + h + ':' + m + ':' + s;
-    }
+    },
 	formatPhoneNumber: function(number) {
 		if (!number) return '';
 		var digits = number.replace(/\D/g, '');
