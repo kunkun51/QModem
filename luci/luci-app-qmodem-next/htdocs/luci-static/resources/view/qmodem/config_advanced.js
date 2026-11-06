@@ -600,7 +600,7 @@ return view.extend({
 			'class': 'alert-message warning',
 			'style': 'margin-top: 10px;'
 		}, [
-			E('strong', {}, _('Warning: ')),
+			E('strong', {}, _('警告: ')),
 			_('Changing IMEI may be illegal in some countries. Use at your own risk.')
 		]);
 		buttonField.appendChild(warningDiv);
