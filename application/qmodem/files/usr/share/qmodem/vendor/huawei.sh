@@ -180,11 +180,11 @@ set_network_prefer(){
             ;;
         "2")
             if [ "$network_prefer_3g" = "true" ] && [ "$network_prefer_4g" = "true" ]; then
-                code="02"
+                code="0302"
             elif [ "$network_prefer_4g" = "true" ] && [ "$network_prefer_5g" = "true" ]; then
-                code="03"
+                code="0803"
             elif [ "$network_prefer_3g" = "true" ] && [ "$network_prefer_5g" = "true" ]; then
-                code="08"
+                code="0802"
             fi
             ;;
         "3")
