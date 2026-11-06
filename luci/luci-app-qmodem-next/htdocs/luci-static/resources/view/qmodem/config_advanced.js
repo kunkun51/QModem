@@ -438,6 +438,10 @@ return view.extend({
 			}
 
 			// Update current preference display
+			var networkOrder = ['5G', '4G', '3G'];
+			currentNetworks.sort(function(a, b) {
+				return networkOrder.indexOf(a) - networkOrder.indexOf(b);
+			});
 			currentPrefValue.textContent = currentNetworks.length > 0 ? currentNetworks.join(', ') : _('None');
 
 			// Create checkboxes for network selection
@@ -445,6 +449,9 @@ return view.extend({
 				dom.content(prefSelectionField, E('em', {}, _('No network types available')));
 				return;
 			}
+			availableNetworks.sort(function(a, b) {
+				return networkOrder.indexOf(a) - networkOrder.indexOf(b);
+			});
 
 			var checkboxContainer = E('div', { 'class': 'cbi-value-field' });
 			availableNetworks.forEach(function(network) {
