@@ -187,7 +187,7 @@ return view.extend({
 					'class': 'cbi-button cbi-button-remove',
 					'click': L.bind(function(idx) {
 						self.handleDeleteSimSms(configSection, idx, contentArea);
-					}, this, msg.index)
+					}, this, msg.id != null ? msg.id : msg.index)
 				}, _('Delete'));
 
 				var row = E('tr', { 
@@ -337,8 +337,9 @@ return view.extend({
 						// Delete messages one by one
 						var deletePromises = [];
 						for (var i = 0; i < messages.length; i++) {
-							if (messages[i].index != null) {
-								deletePromises.push(smsService.deleteSimSms(configSection, messages[i].index));
+							var idx = messages[i].id != null ? messages[i].id : messages[i].index;
+							if (idx != null) {
+								deletePromises.push(smsService.deleteSimSms(configSection, idx));
 							}
 						}
 						
