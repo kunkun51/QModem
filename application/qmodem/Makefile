@@ -29,6 +29,8 @@ define Package/$(PKG_NAME)
 		+coreutils +coreutils-stat +xxd \
 		+PACKAGE_qmodem_INCLUDE_SEAL:qmodem-seal \
 		+usbutils \
+		+PACKAGE_qmodem_INCLUDE_rdisc6:rdisc6 \
+		+PACKAGE_qmodem_INCLUDE_ndisc6:ndisc6 \
 		+PACKAGE_qmodem_INCLUDE_generic-qmi-wwan:kmod-usb-net-qmi-wwan \
 		+PACKAGE_qmodem_INCLUDE_vendor-qmi-wwan:kmod-qmi_wwan_q \
 		+PACKAGE_qmodem_INCLUDE_vendor-qmi-wwan:kmod-qmi_wwan_f \
@@ -65,11 +67,9 @@ define Package/$(PKG_NAME)/config
 
 		config PACKAGE_qmodem_INCLUDE_ndisc6
 			bool "Include ndisc6 for IPv6 Neighbor Discovery"
-			select PACKAGE_ndisc6
 
 		config PACKAGE_qmodem_INCLUDE_rdisc6
 			bool "Include rdisc6 for IPv6 Router Discovery"
-			select PACKAGE_rdisc6
 
 		config PACKAGE_qmodem_INCLUDE_no_ndisc_rdisc6
 			bool "Do not include any IPv6 Neighbor/Router Discovery tool"
